@@ -62,7 +62,7 @@ class DAL:
         except Exception as e:
             raise Exception(f"Error in bulk insert: {e}")
 
-    def get_documents(self,size: int = 7000):
+    def get_documents(self,size: int = 100):
         """Retrieve documents from the Elasticsearch index."""
         try:
             response = self.es_client.search(index=self.index_name, body={"query": {"match_all": {}}}, size=size)
