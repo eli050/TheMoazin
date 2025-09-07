@@ -1,7 +1,7 @@
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 
-class DAL:
+class ElasticDAL:
     """Data Access Layer for Elasticsearch operations."""
 
     def __init__(self, es_client: Elasticsearch, index_name: str, mapping: dict = None):
@@ -10,7 +10,7 @@ class DAL:
         if mapping is not None:
             self.mapping = mapping
         else:
-            self.mapping = DAL._get_mapping()
+            self.mapping = ElasticDAL._get_mapping()
         self._create_index()
 
     def _create_index(self):
