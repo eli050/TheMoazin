@@ -13,3 +13,4 @@ class Producer:
     def publish_message(self,topic,message):
         """Publish a message to a Kafka topic."""
         self.producer.send(topic, message)
+        self.producer.flush()
