@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import uuid
 
 
 class ReadMetaData:
@@ -15,6 +16,8 @@ class ReadMetaData:
         meta_data["create_time"] = file_stat.st_ctime
         meta_data["file_name"] = file_path.name
         meta_data["permissions_file"] = file_stat.st_mode
+        meta_data["file_id"] = uuid.uuid3(uuid.NAMESPACE_DNS,
+                                          f"{file_path}{file_stat.st_mode}")
         return meta_data
     def read_folder(self):
         list_of_metadata = list()

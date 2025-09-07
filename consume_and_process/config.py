@@ -2,10 +2,13 @@ import os
 
 SIZE_OF_GET_DOCUMENTS = 100
 
+CONS_TOPIC_NAME = "meta_data_topic"
+
 MONGO_HOST = os.getenv("MONGO_HOST", "localhost")
 MONGO_PORT = int(os.getenv("MONGO_PORT", 27017))
-MONGO_DB = os.getenv("MONGO_DB", "tweets_db")
+MONGO_DB = os.getenv("MONGO_DB", "podcast_db")
 MONGO_URI = os.getenv("MONGO_URI", f"mongodb://{MONGO_HOST}:{MONGO_PORT}")
+MONGO_COLLECTION = os.getenv("MONGO_COLLECTION", "podcasts")
 
 ELASTICSEARCH_WWW = os.getenv('ELASTICSEARCH_WWW', 'http')
 ELASTICSEARCH_HOST = os.getenv('ELASTICSEARCH_HOST', 'localhost')
