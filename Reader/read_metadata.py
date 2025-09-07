@@ -1,6 +1,6 @@
 from pathlib import Path
 import os
-from pprint import pprint
+
 
 class ReadMetaData:
     def __init__(self, folder_path:str):
@@ -14,6 +14,7 @@ class ReadMetaData:
         meta_data["file_size"] = file_stat.st_size
         meta_data["create_time"] = file_stat.st_ctime
         meta_data["file_name"] = file_path.name
+        meta_data["permissions_file"] = file_stat.st_mode
         return meta_data
     def read_folder(self):
         list_of_metadata = list()
@@ -27,5 +28,4 @@ class ReadMetaData:
 
 
 
-# rmt = ReadMetaData("C:\\podcasts")
-# pprint(rmt.read_folder())
+
