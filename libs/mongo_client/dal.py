@@ -1,4 +1,5 @@
 from libs.mongo_client.connection import Connection
+import gridfs
 
 class DALError(Exception):
     """Base class for exceptions in this module."""
@@ -9,6 +10,7 @@ class MongoDAL:
         """Initialize with a MongoDB connection."""
         self.conn = connection
         self.db_conn = self.conn.connection
+        self.fs = gridfs.GridFS(self.db_conn)
 
     def get_documents(self,collection_name, limit=None):
         try:
@@ -24,3 +26,16 @@ class MongoDAL:
             collection_conn.insert_one(doc)
         except Exception as e:
             raise DALError(f"Error inserting document: {e}")
+
+    def insert_binary(self, file_id:str,binary_data:bytes):
+        try:
+            self.fs.put(binary_data,**{"_id":file_id})
+        except Exception as e:
+            raise e
+
+    def get_binary(self,file_id:str):
+        try:
+            b_data = self.fs.get(file_id=file_id)
+            return b_data.read()
+        except Exception as e:
+            raise e

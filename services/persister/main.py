@@ -13,10 +13,6 @@ elastic_dal = ElasticDAL( Elasticsearch(ELASTICSEARCH_URI),ELASTICSEARCH_INDEX)
 mongo_dal = MongoDAL(conn)
 for pod in cons.consumer:
     elastic_dal.create_documents([pod.value])
-    mongo_doc = {
-        "file_id": pod.value["file_id"],
-        "encoded_content_file": ReadWAV(pod.value["file_path"]).read()
-    }
-    mongo_dal.insert_document(MONGO_COLLECTION,mongo_doc)
+    mongo_dal.insert_binary(pod.value["file_id"],ReadWAV(pod.value["file_path"]).read())
 
 
