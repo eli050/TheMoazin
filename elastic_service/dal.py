@@ -33,20 +33,20 @@ class ElasticDAL:
                     "type":"keyword"
                 },
                 "file_size":{
-                    "type":"float"
+                    "type":"integer"
                 },
                 "create_time":{
-                    "type":"float"
+                    "type":"keyword"
                 },
                 "file_name":{
                     "type":"keyword"
                 },
                 "permissions_file":{
-                    "type":"float"
+                    "type":"keyword"
                 }
             }
         }
-    def create_documents(self, documents:dict):
+    def create_documents(self, documents:list):
         """Bulk insert documents into the Elasticsearch index."""
         actions = [
             {
@@ -57,7 +57,7 @@ class ElasticDAL:
             for doc in documents
         ]
         try:
-            response = bulk(self.es_client, actions, stats_only=False)
+            response = bulk(self.es_client, actions, stats_only=True)
             return response
         except Exception as e:
             raise Exception(f"Error in bulk insert: {e}")

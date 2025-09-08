@@ -3,7 +3,7 @@ import json
 
 
 class Consumer:
-    def __init__(self, topics:list[str], bootstrap_servers:str|list ='localhost:9092',
+    def __init__(self, topics:list[str], bootstrap_server:str ='localhost:9092',
                  decode:str = 'utf-8' ):
         """
         Initializes the Kafka Consumer.
@@ -13,10 +13,10 @@ class Consumer:
             *self.topics,
             group_id='mongo-writer-group',
             value_deserializer=lambda m: json.loads(m.decode(decode)),
-            bootstrap_servers= list(bootstrap_servers),
+            bootstrap_servers= [bootstrap_server],
             auto_offset_reset='earliest'
         )
-        print(f"Kafka consumer subscribed to topic '{self.topics}'.")
+        print(f"Kafka consumer subscribed to topics '{self.topics}'.")
 
     @property
     def consumer(self):

@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
-import uuid
+import stat
+from datetime import datetime
 
 
 class ReadMetaData:
@@ -13,11 +14,11 @@ class ReadMetaData:
         meta_data = dict()
         meta_data["file_path"] = file_path
         meta_data["file_size"] = file_stat.st_size
-        meta_data["create_time"] = file_stat.st_ctime
+        meta_data["create_time"] = str(datetime.fromtimestamp(file_stat.st_ctime))
         meta_data["file_name"] = file_path.name
-        meta_data["permissions_file"] = file_stat.st_mode
-        meta_data["file_id"] = uuid.uuid3(uuid.NAMESPACE_DNS,
-                                          f"{file_path}{file_stat.st_mode}")
+        meta_data["permissions_file"] = stat.filemode(file_stat.st_mode)
+        meta_data["file_id"] = str(hash(f"{meta_data["file_path"]}{meta_data["create_time"]}"
+                                    f"{meta_data["permissions_file"]}"))
         return meta_data
     def read_folder(self):
         list_of_metadata = list()

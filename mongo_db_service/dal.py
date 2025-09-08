@@ -1,4 +1,4 @@
-from connection_to_db import Connection
+from mongo_db_service.connection_to_db import Connection
 
 
 class DALError(Exception):
