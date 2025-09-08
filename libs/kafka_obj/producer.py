@@ -1,6 +1,8 @@
 from kafka import KafkaProducer
 import json
+from logger import Logger
 
+logger = Logger.get_logger()
 
 class Producer:
     """Kafka Producer"""
@@ -14,3 +16,4 @@ class Producer:
         """Publish a message to a Kafka topic."""
         self.producer.send(topic, message)
         self.producer.flush()
+        logger.info(f"Message published to topic '{topic}'.")

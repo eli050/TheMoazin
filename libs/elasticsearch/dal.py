@@ -1,5 +1,10 @@
 from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
+from logger import Logger
+
+logger = Logger.get_logger()
+
+
 
 class ElasticDAL:
     """Data Access Layer for Elasticsearch operations."""
@@ -17,13 +22,14 @@ class ElasticDAL:
         """Create the Elasticsearch index if it doesn't exist."""
         if not self.es_client.indices.exists(index=self.index_name):
             self.es_client.indices.create(index=self.index_name, mappings=self.mapping)
-            print(f"Index '{self.index_name}' created.")
+            logger.info(f"Index '{self.index_name}' created.")
         else:
-            print(f"Index '{self.index_name}' already exists.")
+            logger.info(f"Index '{self.index_name}' already exists.")
 
     @staticmethod
     def _get_mapping():
         """Define the mapping for the Elasticsearch index."""
+        logger.info("Define the mapping for the Elasticsearch index.")
         return {
             "properties":{
                 "file_id":{
@@ -58,14 +64,17 @@ class ElasticDAL:
         ]
         try:
             response = bulk(self.es_client, actions, stats_only=True)
+            logger.info("The documents were successfully saved to MongoDB.")
             return response
         except Exception as e:
+            logger.error("Error in bulk insert")
             raise Exception(f"Error in bulk insert: {e}")
 
     def get_documents(self,size: int = 100):
         """Retrieve documents from the Elasticsearch index."""
         try:
             response = self.es_client.search(index=self.index_name, body={"query": {"match_all": {}}}, size=size)
+            logger.info("The documents were successfully Retrieve from MongoDB.")
             return [{"_id": hit["_id"],
                      **hit["_source"]}
                     for hit in
