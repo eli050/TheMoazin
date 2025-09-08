@@ -49,6 +49,9 @@ class ElasticDAL:
                 },
                 "permissions_file":{
                     "type":"keyword"
+                },
+                "text_file":{
+                    "type":"text"
                 }
             }
         }
@@ -81,3 +84,22 @@ class ElasticDAL:
                     response["hits"]["hits"]]
         except Exception as e:
             raise Exception(f"Error searching documents: {e}")
+
+    def update_documents(self, updates:dict):
+        """Bulk update documents in the Elasticsearch index."""
+        actions = [
+            {
+                "_op_type": "update",
+                "_index": self.index_name,
+                "_id": doc["file_id"],
+                "doc":  {
+                    k: v for k, v in doc.items() if k != "_id"
+                }
+            }
+            for doc in updates
+        ]
+        try:
+            response = bulk(self.es_client, actions, stats_only=False)
+            return response
+        except Exception as e:
+            raise Exception(f"Error in bulk update: {e}")
