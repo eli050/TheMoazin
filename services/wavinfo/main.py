@@ -1,6 +1,6 @@
 from read_metadata import ReadMetaData
 from config import *
-from kafka_objects.producer import Producer
+from libs.kafka_obj.producer import Producer
 
 producer = Producer(BOOTSTRAP_SERVER)
 reader = ReadMetaData(FOLDER_PATH)

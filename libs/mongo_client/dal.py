@@ -1,5 +1,4 @@
-from mongo_db_service.connection_to_db import Connection
-
+from libs.mongo_client.connection import Connection
 
 class DALError(Exception):
     """Base class for exceptions in this module."""

@@ -1,10 +1,10 @@
 from elasticsearch import Elasticsearch
 from config import *
-from consume_and_process.read_wav import ReadWAV
-from mongo_db_service.connection_to_db import Connection
-from mongo_db_service.dal import MongoDAL
-from kafka_objects.consumer import Consumer
-from elastic_service.dal import ElasticDAL
+from services.persister.read_wav import ReadWAV
+from libs.mongo_client.connection import Connection
+from libs.mongo_client.dal import MongoDAL
+from libs.kafka_obj.consumer import Consumer
+from libs.elasticsearch.dal import ElasticDAL
 from pymongo import MongoClient
 
 conn = Connection(MongoClient(MONGO_URI),MONGO_DB)
