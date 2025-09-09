@@ -24,6 +24,12 @@ class Consumer:
 
     @property
     def consumer(self):
+        """
+        Returns the consumer object
+        that holds information messages etc.
+
+        """
+
         return self._consumer
 
 

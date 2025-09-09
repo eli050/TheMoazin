@@ -14,7 +14,13 @@ class STT:
 
 
     def read(self, stage:str = "offline"):
-        """read text from wav file uses STT"""
+        """
+        Read text from wav file uses STT.
+        Works both offline and online,
+        online uses Google servers,
+        offline downloads local model.
+
+        """
         stages = ["offline","online"]
         if stage not in stages:
             raise Exception(f"{stage} value error")

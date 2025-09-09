@@ -55,6 +55,7 @@ class ElasticDAL:
                 }
             }
         }
+
     def create_documents(self, documents:list):
         """Bulk insert documents into the Elasticsearch index."""
         actions = [
