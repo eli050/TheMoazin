@@ -3,3 +3,4 @@ elasticsearch
 pymongo
 SpeechRecognition
 faster_whisper
+
