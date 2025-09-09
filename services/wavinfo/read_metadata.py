@@ -4,7 +4,7 @@ import stat
 from datetime import datetime
 from logger import Logger
 
-logger = Logger.get_logger()
+logger = Logger.get_logger("ReadMetaData_logger")
 
 
 class ReadMetaData:
@@ -23,7 +23,7 @@ class ReadMetaData:
         meta_data["permissions_file"] = stat.filemode(file_stat.st_mode)
         meta_data["file_id"] = str(hash(f"{meta_data["file_path"]}{meta_data["create_time"]}"
                                     f"{meta_data["permissions_file"]}"))
-        logger.info("Reads file metadata successfully")
+        logger.info(f"Reads {file_path} file  metadata successfully")
         return meta_data
     def read_folder(self):
         """Reads files folder metadata"""
@@ -31,7 +31,7 @@ class ReadMetaData:
         for file_name in os.listdir(self.folder_path):
             file_path = self.folder_path+"\\"+file_name
             list_of_metadata.append(ReadMetaData._get_meta_data(file_path))
-        logger.info("Reads folder metadata successfully")
+        logger.info(f"Reads {self.folder_path} folder metadata successfully")
         return list_of_metadata
 
 

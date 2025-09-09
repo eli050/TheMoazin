@@ -2,7 +2,7 @@ from libs.mongo_client.connection import Connection
 import gridfs
 from logger import Logger
 
-logger = Logger.get_logger()
+logger = Logger.get_logger("MongoDAL_logger")
 
 class DALError(Exception):
     """Base class for exceptions in this module."""

@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 from logger import Logger
 
-logger = Logger.get_logger()
+logger = Logger.get_logger("Connection_logger")
 
 class Connection:
     """Manages the connection to a MongoDB collection."""

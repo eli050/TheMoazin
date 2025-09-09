@@ -2,7 +2,7 @@ from elasticsearch import Elasticsearch
 from elasticsearch.helpers import bulk
 from logger import Logger
 
-logger = Logger.get_logger()
+logger = Logger.get_logger("ElasticDAL_logger")
 
 
 

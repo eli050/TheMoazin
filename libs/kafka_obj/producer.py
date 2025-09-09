@@ -2,7 +2,7 @@ from kafka import KafkaProducer
 import json
 from logger import Logger
 
-logger = Logger.get_logger()
+logger = Logger.get_logger("Producer_logger")
 
 class Producer:
     """Kafka Producer"""

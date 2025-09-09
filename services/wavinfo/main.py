@@ -6,7 +6,7 @@ from logger import Logger
 
 
 if __name__ == '__main__':
-    logger = Logger.get_logger()
+    logger = Logger.get_logger("wav\\main_loger")
     try:
         producer = Producer(BOOTSTRAP_SERVER)
         reader = ReadMetaData(FOLDER_PATH)
