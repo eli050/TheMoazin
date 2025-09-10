@@ -1,4 +1,4 @@
-from logger import Logger
+from log.logger import Logger
 from faster_whisper import WhisperModel
 
 logger = Logger.get_logger(name="STT_logger")

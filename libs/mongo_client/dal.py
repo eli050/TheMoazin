@@ -1,6 +1,6 @@
 from libs.mongo_client.connection import Connection
 import gridfs
-from logger import Logger
+from log.logger import Logger
 
 logger = Logger.get_logger("MongoDAL_logger")
 

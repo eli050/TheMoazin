@@ -6,8 +6,8 @@ from libs.mongo_client.dal import MongoDAL
 from libs.kafka_obj.consumer import Consumer
 from libs.elasticsearch.dal import ElasticDAL
 from pymongo import MongoClient
-from logger import Logger
-from services.persister.speach_to_text import STT
+from log.logger import Logger
+from speach_to_text import STT
 
 if __name__ == '__main__':
     logger = Logger.get_logger("persister\\main_logger")

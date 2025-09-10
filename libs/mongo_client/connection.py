@@ -1,7 +1,7 @@
 from pymongo import MongoClient
 
 
-from logger import Logger
+from log.logger import Logger
 
 logger = Logger.get_logger("Connection_logger")
 

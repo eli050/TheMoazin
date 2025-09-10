@@ -1,9 +1,9 @@
 from elasticsearch import Elasticsearch
 from libs.elasticsearch.dal import ElasticDAL
-from services.processor.config import *
-from services.processor.classification import Classification
+from config import *
+from classification import Classification
 
-from logger import Logger
+from log.logger import Logger
 
 logger = Logger.get_logger("Classification_logger")
 

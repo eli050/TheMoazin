@@ -2,7 +2,7 @@ from pathlib import Path
 import os
 import stat
 from datetime import datetime
-from logger import Logger
+from log.logger import Logger
 
 logger = Logger.get_logger("ReadMetaData_logger")
 
@@ -29,7 +29,7 @@ class ReadMetaData:
         """Reads files folder metadata"""
         list_of_metadata = list()
         for file_name in os.listdir(self.folder_path):
-            file_path = self.folder_path+"\\"+file_name
+            file_path = self.folder_path+file_name
             list_of_metadata.append(ReadMetaData._get_meta_data(file_path))
         logger.info(f"Reads {self.folder_path} folder metadata successfully")
         return list_of_metadata

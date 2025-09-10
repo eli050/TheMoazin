@@ -1,4 +1,4 @@
-from logger import Logger
+from log.logger import Logger
 
 logger = Logger.get_logger("ReadWAV_logger")
 

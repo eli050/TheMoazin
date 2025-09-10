@@ -1,7 +1,7 @@
 import logging
 from elasticsearch import Elasticsearch
 import datetime
-from services.persister.config import *
+from .config import ELASTICSEARCH_URI
 
 class Logger:
     _logger = None

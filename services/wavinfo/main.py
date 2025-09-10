@@ -1,7 +1,7 @@
 from read_metadata import ReadMetaData
-from config import *
+from services.wavinfo.config import *
 from libs.kafka_obj.producer import Producer
-from logger import Logger
+from log.logger import Logger
 
 
 
