@@ -95,7 +95,7 @@ class ElasticDAL:
         except Exception as e:
             raise Exception(f"Error searching documents: {e}")
 
-    def update_documents(self, updates:dict):
+    def update_documents(self, updates:list):
         """Bulk update documents in the Elasticsearch index."""
         actions = [
             {
